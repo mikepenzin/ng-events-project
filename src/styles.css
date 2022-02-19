@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+.overlay {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+}
+
+.card-logo {
+    height: 13vw !important;
+    max-width: 100% !important;
+    object-fit: cover;
+    transition: transform .6s;
+}
+
+.card-logo:hover {
+    transform: scale(0.85);
+}
+

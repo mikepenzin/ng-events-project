@@ -1,0 +1,11 @@
+<app-nav-bar [title]="title"></app-nav-bar>
+
+<div *ngIf="loading" class="overlay" [@fadeInOut]>
+  <app-spinner></app-spinner>
+</div>
+
+<div class="container text-center">
+  <main role="main">
+    <router-outlet></router-outlet>
+  </main>
+</div>
