@@ -13,7 +13,7 @@
         <div><strong>Time:</strong> {{event?.time}}</div>
         <div><strong>Price:</strong> ${{event?.price}}</div>
       </div>
-      <div class="col-2 text-start">
+      <div class="col-3 text-start">
         <address>
           <strong>Address:</strong><br />
           {{event?.location?.address}}<br />
@@ -23,9 +23,6 @@
       <div class="col"></div>
     </div>
 </div>
-<div class="d-flex">
-  <button [routerLink]="'/events'" class="btn btn-outline-secondary mr-auto" type="button" >To Events</button>
-</div>
-<div class="container">
+<div class="container mt-5">
   <session-list [sessions]="event?.sessions"></session-list>
 </div>

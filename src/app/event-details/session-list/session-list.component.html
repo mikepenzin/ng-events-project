@@ -1,5 +1,32 @@
-<div class="row mt-5" *ngFor="let session of sessions">
-    <div class="col-md-10 text-start">
+<div class="container d-flex justify-content-between pe-5">
+    <div>
+        <button [routerLink]="'/events'" class="btn btn-outline-secondary mr-auto" type="button" >To Events</button>
+    </div>
+    <div class="btn-group" role="group" aria-label="Filter by Level">
+        <button class="btn btn-outline-secondary border-end-0 rounded-start" (click)="filterByLevel('')" [ngClass]="{'active': currentFilter === ''}">All</button>
+        <button class="btn btn-outline-secondary rounded-0 border-right-0" (click)="filterByLevel('Beginner')" [ngClass]="{'active': currentFilter === 'Beginner'}">Beginner</button>
+        <button class="btn btn-outline-secondary rounded-0 border-right-0" (click)="filterByLevel('Intermediate')" [ngClass]="{'active': currentFilter === 'Intermediate'}">Intermediate</button>
+        <button class="btn btn-outline-secondary border-start-0 rounded-end" (click)="filterByLevel('Advanced')" [ngClass]="{'active': currentFilter === 'Advanced'}">Advanced</button>    
+        <span class="ms-5 text-muted">
+            Order by:
+            <span class="btn-group" role="group" aria-label="">
+                <button class="btn btn-outline-secondary border-right-0 rounded-start" (click)="sortByVotes(true)" [ngClass]="{'active': currentOrder === 'asc'}">ASC</button>
+                <button class="btn btn-outline-secondary border-right-0 rounded-end" (click)="sortByVotes(false)" [ngClass]="{'active': currentOrder === 'desc'}">DESC</button>
+            </span>
+        </span>
+    </div>
+</div>
+
+<div class="container row mt-5" *ngFor="let session of filteredSessions">
+    <div class="col-2 pt-2">
+        <div class="mt-2">
+            <i class="fa fa-heart fa-1x red vote"></i>
+        </div>
+        <div class="text-muted">
+            {{ session?.voters?.length }}
+        </div>
+    </div>
+    <div class="col-10 text-start">
       <div class="well">
           <h4>{{session.name}}</h4>
           <h6>{{session.presenter}}</h6>
