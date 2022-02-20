@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { EventsService } from 'src/shared/events.service';
 
@@ -15,8 +16,13 @@ export class NavBarComponent implements OnInit {
     this.eventService.searchEvents(this.searchEventsText);
   }
 
-  constructor(private eventService: EventsService) { 
+  getCurrentRoute() {
+    
+    return this.router.url;
+  }
 
+  constructor(private eventService: EventsService, private router:Router) { 
+    
   }
 
   ngOnInit(): void {

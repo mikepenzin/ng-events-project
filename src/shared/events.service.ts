@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { IEvent } from './ievent';
+import { Event } from './event';
 
 @Injectable({
   providedIn: 'root'
@@ -319,17 +319,15 @@ export class EventsService {
     }
   ]
   
-  private filteredEvents: IEvent[] = this.events.slice(0);
+  private filteredEvents: Event[] = this.events.slice(0);
 
   constructor() { 
     
   }
 
-  imagePlaceholder = "https://i0.wp.com/shahpourpouyan.com/wp-content/uploads/2018/10/orionthemes-placeholder-image-1.png";
-
-  getEventById(id:Number): IEvent {
+  getEventById(id:Number): Event {
     console.log(this.events.find( e => e.id === id ));
-    return this.events.find( e => e.id === id ) || new IEvent();
+    return this.events.find( e => e.id === id ) || new Event();
   }
 
   searchEvents(searchEventsText: string) {
@@ -341,10 +339,10 @@ export class EventsService {
     console.log("filteredEvents: " + this.filteredEvents.length);
   }
   
-  getEvents(): Observable<IEvent[]> {
+  getEvents(): Observable<Event[]> {
     console.log("Filtered events: " + this.filteredEvents);
     console.log("original events: " + this.events);
-    let subject = new Subject<IEvent[]>();
+    let subject = new Subject<Event[]>();
     setTimeout(() => {subject.next(this.filteredEvents); subject.complete(); }, 100);
 
     return subject;

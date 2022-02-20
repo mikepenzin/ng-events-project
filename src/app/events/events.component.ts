@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/shared/events.service';
-import { IEvent } from 'src/shared/ievent';
+import { Event } from 'src/shared/event';
 
 @Component({
   selector: 'app-events',
@@ -8,7 +8,7 @@ import { IEvent } from 'src/shared/ievent';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-  eventsList!: IEvent[];
+  eventsList!: Event[];
 
   constructor(private eventsService: EventsService) {
     
@@ -21,10 +21,4 @@ export class EventsComponent implements OnInit {
       this.eventsList = res;
     });
   }
-
-  // getEvents(): IEvent[] {
-  //   return EventsService.getEvents().subscribe(res => {
-    
-  //     });
-  // }
 }

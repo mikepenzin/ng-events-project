@@ -7,7 +7,9 @@ import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventsComponent } from './events/events.component';
 import { AppSpinnerComponent } from './app-spinner/app-spinner.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { FormsModule } from '@angular/forms';  // <<<< import it here
+import { FormsModule } from '@angular/forms';
+import { CreateEventComponent } from './create-event/create-event.component';
+import { SessionListComponent } from './event-details/session-list/session-list.component';  // <<<< import it here
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { FormsModule } from '@angular/forms';  // <<<< import it here
     EventDetailsComponent,
     EventsComponent,
     AppSpinnerComponent,
-    NavBarComponent
+    NavBarComponent,
+    CreateEventComponent,
+    SessionListComponent
   ],
   imports: [
     BrowserModule,
