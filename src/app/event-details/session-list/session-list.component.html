@@ -1,6 +1,7 @@
 <div class="container d-flex justify-content-between pe-5">
     <div>
-        <button [routerLink]="'/events'" class="btn btn-outline-secondary mr-auto" type="button" >To Events</button>
+        <button [routerLink]="'/events'" class="btn btn-secondary" type="button" >To Events</button>
+        <button [routerLink]="'/events'" class="btn btn-outline-primary ms-2" type="button" >Create Session</button>
     </div>
     <div class="btn-group" role="group" aria-label="Filter by Level">
         <button class="btn btn-outline-secondary border-end-0 rounded-start" (click)="filterByLevel('')" [ngClass]="{'active': currentFilter === ''}">All</button>
@@ -18,9 +19,11 @@
 </div>
 
 <div class="container row mt-5" *ngFor="let session of filteredSessions">
-    <div class="col-2 pt-2">
-        <div class="mt-2">
-            <i class="fa fa-heart fa-1x red vote"></i>
+    <div class="col-1"></div>
+    <div class="col-1 pt-2">
+        <div class="mt-2 toggle-vote" (click)="toggleVote(session.id)">
+            <i *ngIf="!isSessionUpvotedByUser(session)" class="fa fa-heart-o fa-1x vote"></i>
+            <i *ngIf="isSessionUpvotedByUser(session)" class="fa fa-heart fa-1x red vote"></i>
         </div>
         <div class="text-muted">
             {{ session?.voters?.length }}

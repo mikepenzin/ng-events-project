@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/services/auth.service';
+import { EventsService } from 'src/services/events.service';
 import { Session } from 'src/shared/session';
+import { User } from 'src/shared/user';
 
 @Component({
   selector: 'session-list',
@@ -11,12 +15,27 @@ export class SessionListComponent implements OnInit {
   filteredSessions: Session[] = [];
   currentFilter: string = "";
   currentOrder: string = "asc";
+  subscription: Subscription;
+  currentUser: User | undefined;
   
-  constructor() { }
+  constructor(private eventsService: EventsService, private auth:AuthService) { 
+    this.subscription = eventsService.sessionsSearch$.subscribe(
+      searchString => {
+        this.searchSessions(searchString);
+    });
+  }
 
   ngOnInit(): void {
     this.filteredSessions = this.sessions ? this.sessions.slice(0) : [];
     this.currentOrder == "asc" ? this.sortByVotes(true): this.sortByVotes(false);
+    this.currentUser = this.auth.getCurrentUser();
+  }
+
+  searchSessions(searchText: string) {
+    this.filterByLevel('');
+    this.filteredSessions = this.filteredSessions ? this.filteredSessions.filter((s) => { 
+      return s.name?.toLocaleLowerCase().includes(searchText.toLocaleLowerCase());
+    }): [];
   }
 
   filterByLevel(level: string) {
@@ -43,5 +62,29 @@ export class SessionListComponent implements OnInit {
     this.currentOrder = asc ? "asc" : "desc";
     this.filteredSessions.sort(compare);
   }
+  
+  isSessionUpvotedByUser(session: Session): boolean {
+    if (this.currentUser) {
+      if(!session) { return false; }
+      return session.voters.some((v) => {return v === this.currentUser?.login});
+    } else {
+      return false;
+    }
+  }
 
+  toggleVote(sessionID: number): void {
+    if (this.currentUser && sessionID) {
+        const id = this.sessions?.findIndex((s) => s.id === sessionID);
+        if(id === undefined) return;
+        const foundSession = this.sessions?.[id];
+        if(foundSession && !this.isSessionUpvotedByUser(foundSession)) {
+          foundSession?.voters.push(this.currentUser?.login); 
+        } else {
+          const indexToDelete = foundSession?.voters.indexOf(this.currentUser?.login);
+          if(indexToDelete) {
+            foundSession?.voters.splice(indexToDelete, 1);
+          }
+        }
+    }
+  }
 }

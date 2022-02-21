@@ -5,5 +5,5 @@ export class Session {
     duration: number | 0 = 0;
     level!: string;
     abstract: string | undefined;
-    voters: string[] | undefined;
+    voters: string[] = [];
 }

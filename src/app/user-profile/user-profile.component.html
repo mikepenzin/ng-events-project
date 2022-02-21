@@ -1,0 +1,18 @@
+<div class="mt-5 text-start">
+    <h4>Edit Your Profile </h4>
+    <div class="col-4 mt-2 text-start">
+      <form autocomplete="off" novalidate>
+        <div class="form-group">
+          <label for="name">First Name:</label>
+          <input id="name" type="text" class="form-control" placeholder="First Name..." [(ngModel)]="name" [ngModelOptions]="{standalone: true}" />
+        </div>
+        <div class="form-group  mb-5">
+          <label for="lastname">Last Name:</label>
+          <input id="lastname" type="text" class="form-control" placeholder="Last Name..." [(ngModel)]="lastname"[ngModelOptions]="{standalone: true}" />
+        </div>
+  
+        <button type="submit" class="btn btn-primary" (click)="save()">Save</button>
+        <button type="button" class="btn btn-default">Cancel</button>
+      </form>
+    </div>
+  </div>

@@ -5,3 +5,7 @@
 .vote {
     font-size: 1.5rem;
 }
+
+.toggle-vote {
+    cursor: pointer;
+}

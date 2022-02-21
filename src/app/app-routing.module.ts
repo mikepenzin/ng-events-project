@@ -8,12 +8,16 @@ import { EventsComponent } from './events/events.component';
 
 import { EventsResolver } from './resolvers/events.resolver';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { LoginComponent } from './login/login.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '',  redirectTo: '/events', pathMatch: 'full' },
   { path: 'events', component: EventsComponent },
   { path: 'events/:id', component: EventDetailsComponent },
   { path: 'create-event', component: CreateEventComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'user/:id', component: UserProfileComponent },
   { path: '**',  redirectTo: '/events', pathMatch: 'full' },
 ];
 

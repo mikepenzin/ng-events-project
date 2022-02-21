@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand">{{ title }}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,7 @@
             <a class="nav-link ms-5" [routerLink]="'/events'" [ngClass]="{'active': getCurrentRoute()==='/events'}" aria-current="page">All Events</a>
           </li>
           <li class="nav-item ms-5">
-            <a class="nav-link" [routerLink]="'/create-event'"  [ngClass]="{'active': getCurrentRoute()==='/create-event'}">Create event</a>
+            <button class="btn btn-outline-primary" [routerLink]="'/create-event'" type="button" [ngClass]="{'active': getCurrentRoute()==='/create-event'}">Create event</button>
           </li>
           <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -25,13 +25,14 @@
           </li> -->
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search sessions" aria-label="Search" [(ngModel)]="searchEventsText" [ngModelOptions]="{standalone: true}">
-          <button class="btn btn-outline-secondary" type="submit" (click)="searchEvents()">Search</button>
+          <input class="form-control me-2" *ngIf="getCurrentRoute()==='/events'" type="search" placeholder="Search Events" aria-label="Search" [(ngModel)]="searchEventsText" (keyup)="searchEvents(searchEventsText)" [ngModelOptions]="{standalone: true}">
+          <input class="form-control me-2" *ngIf="getCurrentRoute().includes('/events/')" type="search" placeholder="Search Sessions" aria-label="Search" [(ngModel)]="searchSessionsText" (keyup)="searchSessions(searchSessionsText)" [ngModelOptions]="{standalone: true}">
         </form>
         
         <ul class="navbar-nav me-5 ms-5 mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">Welcome, Mike!</a>
+            <a class="nav-link" *ngIf="currentUser" routerLink="/user/{{currentUser?.id}}">Welcome, {{currentUser?.name}}!</a>
+            <a class="nav-link" *ngIf="!currentUser" routerLink="/login">Login / Signup</a>
           </li>
         </ul>
       </div>
