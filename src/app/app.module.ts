@@ -3,21 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EventDetailsComponent } from './event-details/event-details.component';
-import { EventsComponent } from './events/events.component';
+import { EventDetailsComponent } from './events/event-details/event-details.component';
+import { EventsListComponent } from './events/events-list/events-list.component';
 import { AppSpinnerComponent } from './app-spinner/app-spinner.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
-import { CreateEventComponent } from './create-event/create-event.component';
-import { SessionListComponent } from './event-details/session-list/session-list.component';
-import { LoginComponent } from './login/login.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';  // <<<< import it here
+import { CreateEventComponent } from './events/create-event/create-event.component';
+import { SessionListComponent } from './events/event-details/session-list/session-list.component';
+import { LoginComponent } from './usr/login/login.component';
+import { UserProfileComponent } from './usr/user-profile/user-profile.component';  // <<<< import it here
 
 @NgModule({
   declarations: [
     AppComponent,
     EventDetailsComponent,
-    EventsComponent,
+    EventsListComponent,
     AppSpinnerComponent,
     NavBarComponent,
     CreateEventComponent,

@@ -5,10 +5,10 @@ import { Event } from 'src/shared/event';
 
 @Component({
   selector: 'app-events',
-  templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css']
+  templateUrl: './events-list.component.html',
+  styleUrls: ['./events-list.component.css']
 })
-export class EventsComponent implements OnInit {
+export class EventsListComponent implements OnInit {
   eventsList!: Event[];
   subscription: Subscription;
 
