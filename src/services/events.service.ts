@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Event } from '../shared/event';
+import { Event } from '../shared/event/event';
 import events from '../common/events.json';
 
 @Injectable({

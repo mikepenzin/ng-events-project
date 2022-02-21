@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { EventsService } from 'src/services/events.service';
-import { Event } from 'src/shared/event';
+import { Event } from 'src/shared/event/event';
 
 @Component({
   selector: 'app-event-details',

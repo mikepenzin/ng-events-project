@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { AuthService } from 'src/services/auth.service';
 import { EventsService } from 'src/services/events.service';
-import { User } from 'src/shared/user';
+import { User } from 'src/shared/user/user';
 
 @Component({
   selector: 'app-nav-bar',
