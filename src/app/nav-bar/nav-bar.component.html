@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand">{{ title }}</a>
+      <a class="navbar-brand text-muted">{{ title }}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -9,8 +9,8 @@
           <li class="nav-item">
             <a class="nav-link ms-5" [routerLink]="'/events'" [ngClass]="{'active': getCurrentRoute()==='/events'}" aria-current="page">All Events</a>
           </li>
-          <li class="nav-item ms-5">
-            <button class="btn btn-outline-primary" [routerLink]="'/create-event'" type="button" [ngClass]="{'active': getCurrentRoute()==='/create-event'}">Create event</button>
+          <li class="nav-item ms-5 d-flex">
+            <button class="btn btn-outline-primary btn-sm d-flex align-self-center" [routerLink]="'/create-event'" type="button" [ngClass]="{'active': getCurrentRoute()==='/create-event'}">Create event</button>
           </li>
           <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -31,8 +31,18 @@
         
         <ul class="navbar-nav me-5 ms-5 mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" *ngIf="currentUser" routerLink="/user/{{currentUser?.id}}">Welcome, {{currentUser?.name}}!</a>
+            <!-- <a class="nav-link" *ngIf="currentUser" routerLink="/user/{{currentUser?.id}}">Welcome, {{currentUser?.name}}!</a> -->
             <a class="nav-link" *ngIf="!currentUser" routerLink="/login">Login / Signup</a>
+          </li>
+          <li class="nav-item dropdown" *ngIf="currentUser">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Welcome, {{currentUser?.name}}!
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="/user/{{currentUser?.id}}">Update Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+            </ul>
           </li>
         </ul>
       </div>

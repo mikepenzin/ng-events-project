@@ -56,5 +56,15 @@ export class NavBarComponent implements OnInit {
 
   @Input() 
     title?: string;
+
+
+  logout() {
+    const loggedout = this.auth.logout();
+
+    if(loggedout) {
+      this.router.navigate(["/events"]);
+    }
+
+  }
   
 }

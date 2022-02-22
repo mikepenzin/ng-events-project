@@ -11,7 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { SessionListComponent } from './events/event-details/session-list/session-list.component';
 import { LoginComponent } from './usr/login/login.component';
-import { UserProfileComponent } from './usr/user-profile/user-profile.component';  // <<<< import it here
+import { UserProfileComponent } from './usr/user-profile/user-profile.component'; 
+
 
 @NgModule({
   declarations: [

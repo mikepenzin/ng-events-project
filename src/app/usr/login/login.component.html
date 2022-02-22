@@ -1,15 +1,51 @@
-<div class="col-4 mt-5 text-start">
-  <form autocomplete="off">
-    <div class="form-group" >
-      <label for="userName">User Name:</label>
-      <input id="userName" type="text" class="form-control" placeholder="User Name..." />
-    </div>
-    <div class="form-group mb-5" >
-      <label for="password">Password:</label>
-      <input id="password" type="password" class="form-control"placeholder="Password..." />
-    </div>
-        
-    <button type="submit" class="btn btn-primary">Login</button>
-    <button type="button" class="btn btn-default">Cancel</button>
-  </form>
+<div class="row container">
+  <div class="col-2"></div>
+  <div class="col-4 mt-5 text-start me-3">
+    <h4>Login</h4>
+    <form autocomplete="off">
+      <div class="form-group" >
+        <label for="userName">User Name:</label>
+        <input id="login" name="login" type="text" class="form-control" placeholder="User Name..." [(ngModel)]="login" [ngModelOptions]="{standalone: true}" />
+      </div>
+      <div class="form-group mb-5" >
+        <label for="password">Password:</label>
+        <input id="password" name="login" type="password" class="form-control"placeholder="Password..." [(ngModel)]="password" [ngModelOptions]="{standalone: true}" />
+      </div>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-sm btn-outline-primary" (click)="authenticate()">Login</button>
+      </div>
+    </form>
+  </div>
+  
+  <div class="col-4 mt-5 text-start border-start ps-3">
+    <h4>Signup</h4>
+    <form autocomplete="off">
+      <div class="form-group" >
+        <label for="userName">User Name:</label>
+        <input id="signupLogin" name="signupLogin" type="text" class="form-control" placeholder="User Name..." [(ngModel)]="signupLogin" [ngModelOptions]="{standalone: true}" />
+      </div>
+      <div class="form-group" >
+        <label for="password">Password:</label>
+        <input id="signupPassword" name="signupPassword" type="password" class="form-control"placeholder="Password..." [(ngModel)]="signupPassword" [ngModelOptions]="{standalone: true}" />
+      </div>
+      <hr>
+      <div class="form-group" >
+        <label for="name">First Name:</label>
+        <input id="name" name="name" type="text" class="form-control" placeholder="First Name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" />
+      </div>
+      <div class="form-group mb-5" >
+        <label for="lastName">Last Name:</label>
+        <input id="lastName" name="lastName" type="text" class="form-control" placeholder="Last Name" [(ngModel)]="lastname" [ngModelOptions]="{standalone: true}" />
+      </div>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-sm btn-outline-primary" (click)="signup()">Signup</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-2"></div>
+</div>
+<div class="conatainer row justify-content-center mt-5">
+  <div class="col-4 align-items-center">
+    <button type="button" class="btn btn-sm btn-secondary col-12" routerLink="/events">Back</button>
+  </div>
 </div>
