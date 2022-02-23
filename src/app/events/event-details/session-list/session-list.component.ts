@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/services/auth.service';
+import { AuthService } from 'src/services/auth/auth.service';
 import { EventsService } from 'src/services/events.service';
 import { Session } from 'src/shared/session/session';
 import { User } from 'src/shared/user/user';

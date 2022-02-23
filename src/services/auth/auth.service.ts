@@ -15,7 +15,6 @@ export class AuthService {
   constructor() {
     const defaultUser = new User(34, "Michael", "Penzin", "penzin", "123");
     this.usersList.push(defaultUser);
-    // this.setCurrentUser(defaultUser);
    }
 
   getCurrentUser():User | undefined {

@@ -10,14 +10,17 @@ import { EventsResolver } from './events/events.resolver';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { LoginComponent } from './usr/login/login.component';
 import { UserProfileComponent } from './usr/user-profile/user-profile.component';
+import { 
+  AuthGuardService as AuthGuard 
+} from '../services/auth/auth-guard.service';
 
 const routes: Routes = [
   { path: '',  redirectTo: '/events', pathMatch: 'full' },
   { path: 'events', component: EventsListComponent },
   { path: 'events/:id', component: EventDetailsComponent },
-  { path: 'create-event', component: CreateEventComponent },
+  { path: 'create-event', component: CreateEventComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'user/:id', component: UserProfileComponent },
+  { path: 'user/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: '**',  redirectTo: '/events', pathMatch: 'full' },
 ];
 
