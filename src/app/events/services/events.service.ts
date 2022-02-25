@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Event } from '../shared/event/event';
-import events from '../common/events.json';
+import { Event } from '../index';
+import events from 'src/assets/seed/events.json';
 
 @Injectable({
   providedIn: 'root'

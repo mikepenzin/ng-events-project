@@ -1,0 +1,8 @@
+<div (click)="toggleContent()" class="well well-hover pointable rounded-3">
+    <h4>
+        <ng-content select="[well-title]"></ng-content>
+    </h4>
+    <div class="well-body" [ngClass]="{'visible-well': visible, 'non-visible' : !visible}">
+        <ng-content select="[well-body]"></ng-content>
+    </div>
+</div>

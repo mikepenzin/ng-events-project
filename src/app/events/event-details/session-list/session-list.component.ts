@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/services/auth/auth.service';
-import { EventsService } from 'src/services/events.service';
-import { Session } from 'src/shared/session/session';
-import { User } from 'src/shared/user/user';
+
+import { Session, EventsService } from '../../../events/index';
+import { User, AuthService } from '../../../auth/index';
 
 @Component({
   selector: 'session-list',
@@ -72,7 +71,8 @@ export class SessionListComponent implements OnInit {
     }
   }
 
-  toggleVote(sessionID: number): void {
+  toggleVote(sessionID: number, event: any): void {
+    
     if (this.currentUser && sessionID) {
         const id = this.sessions?.findIndex((s) => s.id === sessionID);
         if(id === undefined) return;
@@ -86,5 +86,8 @@ export class SessionListComponent implements OnInit {
           }
         }
     }
+
+    event.stopPropagation();
+    event.preventDefault();
   }
 }

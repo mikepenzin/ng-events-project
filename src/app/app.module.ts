@@ -1,18 +1,34 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EventDetailsComponent } from './events/event-details/event-details.component';
-import { EventsListComponent } from './events/events-list/events-list.component';
-import { AppSpinnerComponent } from './app-spinner/app-spinner.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { FormsModule } from '@angular/forms';
-import { CreateEventComponent } from './events/create-event/create-event.component';
-import { SessionListComponent } from './events/event-details/session-list/session-list.component';
-import { LoginComponent } from './usr/login/login.component';
-import { UserProfileComponent } from './usr/user-profile/user-profile.component'; 
 
+import { 
+  NavBarComponent 
+} from './nav-bar/index';
+
+import { 
+  CollapsibleWellComponent, 
+  AppSpinnerComponent 
+} from './common/index';
+
+import {
+  DurationPipe,
+  EventDetailsComponent,
+  EventsListComponent,
+  CreateEventComponent,
+  SessionListComponent,
+  CreateSessionComponent
+} from './events/index';
+
+import {
+  LoginComponent,
+  UserProfileComponent
+} from './auth/index';
 
 @NgModule({
   declarations: [
@@ -24,12 +40,17 @@ import { UserProfileComponent } from './usr/user-profile/user-profile.component'
     CreateEventComponent,
     SessionListComponent,
     LoginComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CollapsibleWellComponent,
+    DurationPipe,
+    CreateSessionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

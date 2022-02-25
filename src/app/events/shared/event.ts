@@ -1,5 +1,5 @@
-import { Location } from "../location/location";
-import { Session } from "../session/session";
+import { Location } from "./location";
+import { Session } from "./session";
 
 export class Event {
     id: number = 999;

@@ -1,0 +1,21 @@
+.well-body {
+    transition: max-height 0.25s ease-in;
+    overflow: hidden;
+}
+
+.visible-well {
+    max-height: 40vh;
+}
+
+.non-visible {
+    max-height: 0;
+}
+
+.well-hover {
+    opacity: 0.8;
+}
+
+.well-hover:hover {
+    background-color: #f5f5f5;
+    opacity: 1;
+}

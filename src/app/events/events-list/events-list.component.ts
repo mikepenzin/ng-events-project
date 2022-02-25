@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { EventsService } from 'src/services/events.service';
-import { Event } from 'src/shared/event/event';
+import { EventsService } from 'src/app/events/services/events.service';
+import { Event } from '../index';
 
 @Component({
   selector: 'app-events',

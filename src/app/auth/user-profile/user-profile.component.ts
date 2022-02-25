@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/services/auth/auth.service';
-import { User } from 'src/shared/user/user';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { User } from '../index';
 
 @Component({
   selector: 'app-user-profile',

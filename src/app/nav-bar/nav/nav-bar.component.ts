@@ -2,9 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { AuthService } from 'src/services/auth/auth.service';
-import { EventsService } from 'src/services/events.service';
-import { User } from 'src/shared/user/user';
+import { EventsService } from '../../events/index';
+import { User, AuthService } from '../../auth/index';
 
 @Component({
   selector: 'app-nav-bar',
