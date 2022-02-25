@@ -81,7 +81,7 @@ export class SessionListComponent implements OnInit {
           foundSession?.voters.push(this.currentUser?.login); 
         } else {
           const indexToDelete = foundSession?.voters.indexOf(this.currentUser?.login);
-          if(indexToDelete) {
+          if(indexToDelete !== undefined && indexToDelete > -1 ) {
             foundSession?.voters.splice(indexToDelete, 1);
           }
         }

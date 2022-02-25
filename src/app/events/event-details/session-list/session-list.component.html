@@ -23,12 +23,17 @@
         <div class="row" well-title>
             <div class="col-2"></div>
             <div class="col-1 pt-2 align-self-center align-content-center d-flex">
-                <div class="text-muted me-2 align-self-center" style="font-size: 0.85rem; display: inline-flex;">
+                <!-- <div class="text-muted me-2 align-self-center" style="font-size: 0.85rem; display: inline-flex;">
                     {{ session?.voters?.length }}
-                </div>
-                <div class="mt-2 toggle-vote align-self-center" style="display: inline-flex; top: -3px; position: relative;" (click)="toggleVote(session.id, $event)">
+                </div> -->
+                <div class="mt-2 toggle-vote align-self-center position-relative" style="display: inline-flex; top: -3px; position: relative;" (click)="toggleVote(session.id, $event)">
                     <i *ngIf="!isSessionUpvotedByUser(session)" class="fa fa-heart-o fa-1x vote"></i>
-                    <i *ngIf="isSessionUpvotedByUser(session)" class="fa fa-heart fa-1x red vote"></i>
+                    <i *ngIf="isSessionUpvotedByUser(session)" class="fa fa-heart fa-1x vote voted"></i>
+                    <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger start-100" 
+                          style="font-size: 0.5rem;">
+                        {{ session?.voters?.length }}
+                    <span class="visually-hidden">unread messages</span>
+                    </span>
                 </div>
             </div>
             <div class="col-9 text-start align-self-center">

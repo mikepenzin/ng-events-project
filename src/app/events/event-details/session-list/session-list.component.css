@@ -1,5 +1,5 @@
-.red {
-    color: #b32015;
+.voted {
+    color: var(--bs-secondary-rgb);
 }
 
 .vote {
