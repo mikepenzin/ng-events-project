@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Session, EventsService } from '../../../events/index';
@@ -11,57 +11,33 @@ import { User, AuthService } from '../../../auth/index';
 })
 export class SessionListComponent implements OnInit {
   @Input() sessions: Session[] | undefined;
-  filteredSessions: Session[] = [];
-  currentFilter: string = "";
-  currentOrder: string = "asc";
-  subscription: Subscription;
+  @Output() saveSession = new EventEmitter();
   currentUser: User | undefined;
   
   constructor(private eventsService: EventsService, private auth:AuthService) { 
-    this.subscription = eventsService.sessionsSearch$.subscribe(
-      searchString => {
-        this.searchSessions(searchString);
-    });
+    
   }
 
   ngOnInit(): void {
-    this.filteredSessions = this.sessions ? this.sessions.slice(0) : [];
-    this.currentOrder == "asc" ? this.sortByVotes(true): this.sortByVotes(false);
     this.currentUser = this.auth.getCurrentUser();
   }
 
-  searchSessions(searchText: string) {
-    this.filterByLevel('');
-    this.filteredSessions = this.filteredSessions ? this.filteredSessions.filter((s) => { 
-      return s.name?.toLocaleLowerCase().includes(searchText.toLocaleLowerCase());
-    }): [];
+  saveNewSession(session:Session) {
+    // if (this.sessions !== undefined) {
+    //   const nextId = Math.max.apply(null, this.sessions.map(s => s.id));
+    //   session.id = nextId + 1
+    //   this.sessions.push(session);
+    //   this.saveSession.emit(this.sessions);
+    //   // this.eventsService.saveEvent(this.event).subscribe();
+    //   // this.addMode = false
+    // }
+    this.saveSession.emit(session);
   }
 
-  filterByLevel(level: string) {
-    if (level === "") {
-      this.filteredSessions = this.sessions || [];
-    } else {
-      this.filteredSessions = this.sessions ? this.sessions.filter((s) => { return s.level.toLocaleLowerCase() === level.toLocaleLowerCase()}) : [];
-    }
-    this.currentFilter = level;
-    this.currentOrder == "asc" ? this.sortByVotes(true): this.sortByVotes(false);
+  cancelAddSession() {
+    // this.addMode = false
   }
 
-  sortByVotes(asc:boolean) {
-    function compare( a:any, b:any ) {
-      if ( a.voters.length < b.voters.length ) {
-        return asc ? -1: 1;
-      }
-      if ( a.voters.length > b.voters.length ) {
-        return asc ? 1 : -1;
-      }
-      return 0;
-    }
-
-    this.currentOrder = asc ? "asc" : "desc";
-    this.filteredSessions.sort(compare);
-  }
-  
   isSessionUpvotedByUser(session: Session): boolean {
     if (this.currentUser) {
       if(!session) { return false; }
@@ -71,12 +47,12 @@ export class SessionListComponent implements OnInit {
     }
   }
 
-  toggleVote(sessionID: number, event: any): void {
-    
+  toggleVote(sessionID: number | undefined, event: any): void {
+    let foundSession;
     if (this.currentUser && sessionID) {
         const id = this.sessions?.findIndex((s) => s.id === sessionID);
         if(id === undefined) return;
-        const foundSession = this.sessions?.[id];
+        foundSession = this.sessions?.[id];
         if(foundSession && !this.isSessionUpvotedByUser(foundSession)) {
           foundSession?.voters.push(this.currentUser?.login); 
         } else {
@@ -86,7 +62,7 @@ export class SessionListComponent implements OnInit {
           }
         }
     }
-
+    this.saveSession.emit(foundSession);
     event.stopPropagation();
     event.preventDefault();
   }

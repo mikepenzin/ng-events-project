@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { EventsService } from 'src/app/events/services/events.service';
-import { Event } from '../index';
+import { Event } from '../../index';
 
 @Component({
   selector: 'app-events',
@@ -22,8 +22,9 @@ export class EventsListComponent implements OnInit {
   ngOnInit(): void {
 
     this.eventsService.getEvents().subscribe(res => {
-      console.log(res)
-      this.eventsList = res;
+      if(res !== undefined) {
+        this.eventsList = res;
+      }
     });
   }
 }

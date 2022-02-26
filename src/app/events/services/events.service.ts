@@ -9,14 +9,14 @@ import events from 'src/assets/seed/events.json';
 
 export class EventsService {
   
-  private filteredEvents: Event[] = events.slice(0);
+  private filteredEvents: Event[] | undefined = events.slice(0);
 
   constructor() { 
     
   }
 
-  getEventById(id:Number): Event {
-    return events.find( (e: { id: Number; }) => e.id === id ) || new Event();
+  getEventById(id:Number): Event | undefined {
+    return events.find( (e: { id: Number; }) => e.id === id ) || undefined;
   }
 
   searchEvents(searchEventsText: string) {
@@ -29,8 +29,8 @@ export class EventsService {
     this.getSessionSearch(searchSessionText);
   }
   
-  getEvents(): Observable<Event[]> {
-    let subject = new Subject<Event[]>();
+  getEvents(): Observable<Event[] | undefined> {
+    let subject = new Subject<Event[] | undefined>();
     setTimeout(() => {subject.next(this.filteredEvents); subject.complete(); }, 100);
 
     return subject;
@@ -48,5 +48,9 @@ export class EventsService {
 
   getSessionSearch(searchSession: string) {
     this.sessionSearchSource.next(searchSession);
+  }
+
+  saveEvent() {
+    
   }
 }

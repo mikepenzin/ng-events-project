@@ -1,0 +1,13 @@
+<div class="card justify-self-center mx-2">
+    <span class="badge rounded-pill bg-secondary position-absolute" 
+          title="Event Price"
+          style="right: 3%; top: 4%; font-size: 0.8rem;">
+      {{ event?.price | currency }}
+    </span>
+    <img src="{{ event?.imageUrl }}" class="card-logo mx-auto" alt="{{ event?.name }}">
+    <div class="card-body">
+      <h5 class="card-title" style="cursor: pointer;" routerLink= "/events/{{event?.id}}">{{ event?.name  | uppercase }}</h5>
+      <p class="card-text">Location: {{ event?.location?.city }}, {{ event?.location?.country }}</p>
+      <a routerLink="/event/{{event?.id}}" class="btn btn-sm btn-outline-secondary">More details</a>
+    </div>
+  </div>

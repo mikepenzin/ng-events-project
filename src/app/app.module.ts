@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -22,13 +22,18 @@ import {
   EventsListComponent,
   CreateEventComponent,
   SessionListComponent,
-  CreateSessionComponent
+  CreateSessionComponent,
+  EventThumbnailComponent
 } from './events/index';
 
 import {
   LoginComponent,
   UserProfileComponent
 } from './auth/index';
+
+import { 
+  NotFoundErrorComponent 
+} from './errors/index';
 
 @NgModule({
   declarations: [
@@ -43,12 +48,15 @@ import {
     UserProfileComponent,
     CollapsibleWellComponent,
     DurationPipe,
-    CreateSessionComponent
+    CreateSessionComponent,
+    NotFoundErrorComponent,
+    EventThumbnailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],

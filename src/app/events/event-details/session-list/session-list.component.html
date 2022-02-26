@@ -1,32 +1,12 @@
-<div class="container d-flex justify-content-between pe-5 mb-3">
-    <div>
-        <button [routerLink]="'/events'" class="btn btn-secondary btn-sm" type="button" >To Events</button>
-        <button [routerLink]="'create-session'" class="btn btn-outline-primary btn-sm ms-2" type="button" >Create Session</button>
-    </div>
-    <div class="btn-group" role="group" aria-label="Filter by Level">
-        <button class="btn btn-outline-secondary btn-sm border-end-0 rounded-start" (click)="filterByLevel('')" [ngClass]="{'active': currentFilter === ''}">All</button>
-        <button class="btn btn-outline-secondary btn-sm rounded-0 border-right-0" (click)="filterByLevel('Beginner')" [ngClass]="{'active': currentFilter === 'Beginner'}">Beginner</button>
-        <button class="btn btn-outline-secondary btn-sm rounded-0 border-right-0" (click)="filterByLevel('Intermediate')" [ngClass]="{'active': currentFilter === 'Intermediate'}">Intermediate</button>
-        <button class="btn btn-outline-secondary btn-sm border-start-0 rounded-end" (click)="filterByLevel('Advanced')" [ngClass]="{'active': currentFilter === 'Advanced'}">Advanced</button>    
-        <span class="ms-5 text-muted">
-            Order by:
-            <span class="btn-group" role="group" aria-label="">
-                <button class="btn btn-outline-secondary btn-sm border-right-0 rounded-start" style="font-size: 0.8rem;" (click)="sortByVotes(true)" [ngClass]="{'active': currentOrder === 'asc'}">ASC</button>
-                <button class="btn btn-outline-secondary btn-sm border-right-0 rounded-end" style="font-size: 0.8rem;" (click)="sortByVotes(false)" [ngClass]="{'active': currentOrder === 'desc'}">DESC</button>
-            </span>
-        </span>
-    </div>
-</div>
-
-<div class="container row mt-2" *ngFor="let session of filteredSessions">
+<div class="container row" *ngFor="let session of sessions">
     <collapsible-well>
         <div class="row" well-title>
             <div class="col-2"></div>
-            <div class="col-1 pt-2 align-self-center align-content-center d-flex">
-                <!-- <div class="text-muted me-2 align-self-center" style="font-size: 0.85rem; display: inline-flex;">
-                    {{ session?.voters?.length }}
-                </div> -->
-                <div class="mt-2 toggle-vote align-self-center position-relative" style="display: inline-flex; top: -3px; position: relative;" (click)="toggleVote(session.id, $event)">
+            <div class="col-1 p-2 align-self-center align-content-center d-flex" 
+                 style="top: 5px; position: relative;">
+                <div class="toggle-vote align-self-center position-relative" 
+                     style="display: inline-flex; position: relative;" 
+                     (click)="toggleVote(session.id, $event)">
                     <i *ngIf="!isSessionUpvotedByUser(session)" class="fa fa-heart-o fa-1x vote"></i>
                     <i *ngIf="isSessionUpvotedByUser(session)" class="fa fa-heart fa-1x vote voted"></i>
                     <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger start-100" 
@@ -36,16 +16,16 @@
                     </span>
                 </div>
             </div>
-            <div class="col-9 text-start align-self-center">
-                {{session.name}}
+            <div class="col-9 text-start mx-0 align-self-center">
+                <h3 class="mx-0 mb-0">{{session.name}}</h3>
             </div>
         </div>
         <div class="row text-start background-secondary" well-body>
             <div class="col-3"></div>
             <div class="col-9">
-                <h6>{{session.presenter}}</h6>
-                <span>Duration: {{session.duration | duration}}</span><br />
-                <span>Level: {{session.level}}</span>
+                <h5>{{session.presenter}}</h5>
+                <span><h6 style="display: inline-block;">Duration:</h6> {{session.duration | duration}}</span><br />
+                <span><h6 style="display: inline-block;">Level:</h6> {{session.level}}</span>
                 <p>{{session.abstract}}</p>
             </div>
         </div>

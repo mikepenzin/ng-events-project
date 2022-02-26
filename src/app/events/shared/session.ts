@@ -1,5 +1,5 @@
 export class Session {
-    id: number | 999 = 999;
+    id: number | undefined;
     name: string | undefined;
     presenter: string | undefined;
     duration: number | 0 = 0;

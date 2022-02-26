@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -8,7 +7,9 @@ import {
   CreateEventComponent,
   EventsListComponent,
   EventDetailsComponent,
-  CreateSessionComponent
+  CreateSessionComponent,
+  EventsResolver,
+  EventResolver
 } from './events/index';
 
 import { 
@@ -17,15 +18,18 @@ import {
   AuthGuardService as AuthGuard 
 } from './auth/index';
 
+import {
+  NotFoundErrorComponent
+} from './errors/index'
+
 const routes: Routes = [
   { path: '',  redirectTo: '/events', pathMatch: 'full' },
   { path: 'events', component: EventsListComponent },
-  { path: 'events/:id', component: EventDetailsComponent },
-  { path: 'events/:id/create-session', component: CreateSessionComponent },
+  { path: 'event/:id', component: EventDetailsComponent, resolve: { event: EventResolver }},
   { path: 'create-event', component: CreateEventComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'user/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
-  { path: '**',  redirectTo: '/events', pathMatch: 'full' },
+  { path: '**',  component: NotFoundErrorComponent },
 ];
 
 @NgModule({
